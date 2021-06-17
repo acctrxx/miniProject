@@ -16,7 +16,7 @@
     <h4>Input Data</h4>
   </div>
   <div class="card-body">
-    <form action="{{ route('user.update', $data->id) }}" method="POST">
+    <form action="{{ route('user.update', $data->id) }}" method="POST" enctype="multipart/form-data">
       @csrf
       @method('PUT')
       <div class="form-group">
@@ -41,7 +41,7 @@
       </div>
       <div class="form-group">
         <label for="helperText">Image</label>
-        <input value="{{ old('image', $data->image) }}" type="file" id="helperText" class="form-control" name="image" placeholder="Image">
+        <input value="{{ old('image', $data->image) }}" type="file" id="helperText" class="form-control" name="image_file" placeholder="Image">
       </div>
       <button class="btn btn-primary">Sumbit</button>
     </div>

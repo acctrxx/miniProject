@@ -53,7 +53,12 @@ class UserController extends Controller
             'password' => 'required|min:8|max:25|confirmed',
             'image_file' => 'required'
         ]);
-
+        $image = $request->file('image_file');
+        $new_name_image = time() . '.' .  $image->getClientOriginalExtension();
+        $image->move(public_path('profile'), $new_name_image);
+        $request->merge([
+            'image' => $new_name_image
+        ]);
         // if ($request->current_password == $data->password) {
         //     $data->update($request->all());
         // } else {

@@ -16,7 +16,7 @@
     <h4>Input Data</h4>
   </div>
   <div class="card-body">
-    <form action="{{ route('article.store') }}" method="POST">
+    <form action="{{ route('article.store') }}" method="POST" enctype="multipart/form-data">
       @csrf
       <div class="form-group">
         <label for="helperText">Title</label>

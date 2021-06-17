@@ -10,7 +10,7 @@ class Category extends Model
     protected $fillable = [
         'name',
     ];
-    public function category()
+    public function article()
     {
         return $this->hasMany(Article::class);
     }

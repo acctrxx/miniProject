@@ -11,10 +11,16 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $data = Article::all();
+        $data = Article::with('user', 'category')->get();
+        return view('articles.index', compact('data'));
+    }
+
+    public function show($id)
+    {
+        $data = Article::findorfail($id);
         $users = User::all();
         $categories = Category::all();
-        return view('articles.index', compact('data', 'categories', 'users'));
+        return view('articles.show', compact('data', 'categories', 'users'));
     }
 
     public function create()
@@ -34,11 +40,10 @@ class ArticleController extends Controller
             'user_id' => 'required',
             'category_id' => 'required',
             ]);
-            $image = $request->file('image_file');
-            $new_name_image = time() . '.' .  $image->getClientOriginalExtension();
-            $image->move(public_path('profile'), $new_name_image);
+            $image_file = $this->uploadImage($request->file('image_file'));
+            // $image_file = $request->file('image_file')->store('img', 'public');
             $request->merge([
-                'image' => $new_name_image
+                'image' => $image_file
             ]);
             Article::create($request->all());
             return redirect()->route('article.index');
@@ -46,7 +51,7 @@ class ArticleController extends Controller
 
     public function edit($id)
     {
-        $data = Article::all();
+        $data = Article::findorfail($id);
         $users = User::all();
         $categories = Category::all();
         return view('articles.edit', compact('data', 'categories', 'users'));
@@ -55,7 +60,6 @@ class ArticleController extends Controller
     public function update(Request $request, $id)
     {
         $data = Article::find($id);
-
         $request->validate([
             'title' => 'required',
             'content' => 'required',
@@ -64,6 +68,16 @@ class ArticleController extends Controller
             'category_id' => 'required'
         ]);
 
+        // Code for delete image if exsist
+        $img_path = public_path('profile/' . $data->image);
+        if (file_exists($img_path)) {
+            unlink($img_path);
+        }
+
+        $image_file = $this->uploadImage($request->file('image_file'));
+        $request->merge([
+            'image' => $image_file
+        ]);
         $data->update($request->all());
         return redirect()->route('article.index');
     }
@@ -73,5 +87,11 @@ class ArticleController extends Controller
         $data = Article::findorfail($id);
         $data->delete();
         return back();
+    }
+    public function uploadImage($image)
+    {
+        $new_name_image = time() . '.' .  $image->getClientOriginalExtension();
+        $image->move(public_path('profile'), $new_name_image);
+        return $new_name_image;
     }
 }

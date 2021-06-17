@@ -28,13 +28,17 @@
                                 <tr>
                                     <td class="text-bold-500">{{ $item->title }}</td>
                                     <td>{{ $item->content }}</td>
-                                    <td><img src="{{ asset('profile/' . $item->image) }}" alt=""></td>
+                                    <td><img style="height: 60px;" src="{{ asset('profile/' . $item->image) }}" alt=""></td>
                                     <td class="text-bold-500">{{ $item->user->name }}</td>
                                     <td class="text-bold-500">{{ $item->category->name }}</td>
-                                    <td class="d-flex">
-                                        <a href="{{ route('article.edit', $item->id) }}"><i class="bi bi-pencil-square" style="font-size: 25px;"></i></a>
-                                        <div class="mx-2">|</div>
-                                         <a href="{{ route('article.delete', $item->id) }}"><i class="bi bi-trash-fill" style="font-size: 25px; color: red;"></i></a>
+                                    <td>
+                                        <div class="d-flex">
+                                            <a href="{{ route('article.show', $item->id) }}"><i class="bi bi-journal-text" style="font-size: 25px;"></i></a>
+                                            <span class="mx-2">|</span>
+                                            <a href="{{ route('article.edit', $item->id) }}"><i class="bi bi-pencil-square" style="font-size: 25px;"></i></a>
+                                            <span class="mx-2">|</span>
+                                            <a href="{{ route('article.delete', $item->id) }}"><i class="bi bi-trash-fill" style="font-size: 25px; color: red;"></i></a>
+                                        </div>
                                     </td>
                                 </tr>
                               @endforeach

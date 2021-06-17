@@ -13,7 +13,7 @@ class User extends Model
         'password',
         'image',
     ];
-    public function user()
+    public function article()
     {
         return $this->hasMany(Article::class);
     }

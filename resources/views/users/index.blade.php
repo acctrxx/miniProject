@@ -27,10 +27,12 @@
                                     <td class="text-bold-500">{{ $item->name }}</td>
                                     <td>{{ $item->email }}</td>
                                     <td class="text-bold-500"><img style="height: 40px;" src="{{ asset('profile/' . $item->image) }}" alt=""></td>
-                                    <td class="d-flex">
-                                        <a href="{{ route('user.edit', $item->id) }}"><i class="bi bi-pencil-square" style="font-size: 25px;"></i></a>
-                                        <div class="mx-2">|</div>
-                                         <a href="{{ route('user.delete', $item->id) }}"><i class="bi bi-trash-fill" style="font-size: 25px; color: red;"></i></a>
+                                    <td>
+                                        <div class="d-flex">
+                                            <a href="{{ route('user.edit', $item->id) }}"><i class="bi bi-pencil-square" style="font-size: 25px;"></i></a>
+                                            <div class="mx-2">|</div>
+                                            <a href="{{ route('user.delete', $item->id) }}"><i class="bi bi-trash-fill" style="font-size: 25px; color: red;"></i></a>
+                                         </div>
                                     </td>
                                 </tr>
                               @endforeach
