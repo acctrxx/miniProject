@@ -11,5 +11,5 @@
     <link rel="stylesheet" href="/dist/assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="/dist/assets/css/app.css">
     <link rel="shortcut icon" href="/dist/assets/images/favicon.svg" type="image/x-icon">
-    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="assets/vendors/fontawesome/all.min.css">
 </head>

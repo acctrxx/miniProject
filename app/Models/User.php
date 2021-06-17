@@ -7,5 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'image',
+    ];
+    public function user()
+    {
+        return $this->hasMany(Article::class);
+    }
 }

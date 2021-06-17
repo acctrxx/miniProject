@@ -1,15 +1,13 @@
 @extends('layout.app')
 @section('title', 'Categories')
-@section('active4', 'active')
 @section('main_title', 'Categories Page')
 @section('content')
     <div class="row">
       <div class="row" id="table-hover-row">
         <div class="col-12">
-            <a href="{{ url('categories/create') }}" class="btn btn-primary mb-3">Create</a>
             <div class="card">
                 <div class="card-header">
-                  <h4>List Categories</h4>
+                    <h4>List Articles</h4>
                 </div>
                 <div class="card-content">
                     <!-- table hover -->
@@ -17,27 +15,21 @@
                         <table class="table table-hover mb-0">
                             <thead>
                                 <tr>
-                                    <th>NAME</th>
-                                    <th>ACTION</th>
+                                  <th>CATEGORY</th>
+                                  <th>ACTION</th>
                                 </tr>
                             </thead>
                             <tbody>
+                              @foreach ($data as $item)
                                 <tr>
-                                    <td class="text-bold-500">Bitcoin Miner</td>
-                                    <td>
-                                      <a href="{{ url('categories/edit') }}" class="btn btn-warning">Edit</a>
-                                        |
-                                      <a href="#" class="btn btn-danger">Delete</a>
+                                    <td class="text-bold-500">{{ $item->name }}</td>
+                                    <td class="d-flex">
+                                        <a href="{{ route('category.edit', $item->id) }}"><i class="bi bi-pencil-square" style="font-size: 25px;"></i></a>
+                                        <div class="mx-2">|</div>
+                                         <a href="{{ route('category.delete', $item->id) }}"><i class="bi bi-trash-fill" style="font-size: 25px; color: red;"></i></a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="text-bold-500">Sports</td>
-                                    <td>
-                                      <a href="{{ url('categories/edit') }}" class="btn btn-warning">Edit</a>
-                                        |
-                                      <a href="#" class="btn btn-danger">Delete</a>
-                                    </td>
-                                </tr>
+                              @endforeach
                             </tbody>
                         </table>
                     </div>

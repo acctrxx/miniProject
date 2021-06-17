@@ -2,32 +2,58 @@
 @section('title', 'Articles')
 @section('main_title', 'Articles Create')
 @section('content')
-<a href="{{ url('articles/all') }}" class="btn btn-primary mb-3">Create</a>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <div class="card">
   <div class="card-header">
     <h4>Input Data</h4>
   </div>
-    <div class="card-body">
+  <div class="card-body">
+    <form action="{{ route('article.store') }}" method="POST">
+      @csrf
       <div class="form-group">
         <label for="helperText">Title</label>
-        <input type="text" id="helperText" class="form-control" placeholder="Title">
+        <input value="{{ old('title') }}" type="text" id="helperText" name="title" class="form-control" placeholder="Title">
       </div>
       <div class="form-group">
-        <label for="helperText">Content</label>
-        <textarea type="text" id="helperText" class="form-control" placeholder="Content"></textarea>
+        <div class="form-group mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label">Content</label>
+          <textarea class="form-control" name="content" value="{{ old('content') }}" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
       </div>
       <div class="form-group">
-        <label for="helperText">Category</label>
-        <input type="text" id="helperText" class="form-control" placeholder="Category">
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect01">User</label>
+          <select class="form-select" id="inputGroupSelect01" name="user_id">
+            @foreach ($users as $user)
+              <option value="{{ $user->id }}">{{ $user->name }}</option>
+            @endforeach
+          </select>
+        </div>
       </div>
       <div class="form-group">
-        <label for="helperText">Date</label>
-        <input type="text" id="helperText" class="form-control" placeholder="Date">
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect01">Category</label>
+          <select class="form-select" id="inputGroupSelect01" name="category_id">
+            @foreach ($categories as $category)
+              <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
+          </select>
+        </div>
       </div>
       <div class="form-group">
         <label for="helperText">Image</label>
-        <input type="file" id="helperText" class="form-control">
+        <input value="{{ old('image') }}" type="file" id="helperText" class="form-control" name="image_file" placeholder="Image">
       </div>
+      <button class="btn btn-primary">Sumbit</button>
     </div>
+  </form>
 </div>
 @endsection
