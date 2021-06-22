@@ -6,6 +6,11 @@
       <div class="row" id="table-hover-row">
         <div class="col-12">
             <div class="card">
+                @if (session('sukses-store'))
+                    <div class="alert alert-success">
+                        {{ session('sukses-store') }}
+                    </div>
+                @endif
                 <div class="card-header">
                     <h4>List Articles</h4>
                 </div>
@@ -16,7 +21,6 @@
                             <thead>
                                 <tr>
                                     <th>TITLE</th>
-                                    <th>CONTENT</th>
                                     <th>IMAGE</th>
                                     <th>USERS</th>
                                     <th>CATEGORY</th>
@@ -27,7 +31,6 @@
                               @foreach ($data as $item)
                                 <tr>
                                     <td class="text-bold-500">{{ $item->title }}</td>
-                                    <td>{{ $item->content }}</td>
                                     <td><img style="height: 60px;" src="{{ asset('profile/' . $item->image) }}" alt=""></td>
                                     <td class="text-bold-500">{{ $item->user->name }}</td>
                                     <td class="text-bold-500">{{ $item->category->name }}</td>

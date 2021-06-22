@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -10,7 +12,9 @@ class CategoryController extends Controller
     public function index()
     {
         $data = Category::all();
-        return view('categories.index', compact('data'));
+        $articles = Article::all();
+        $users = User::all();
+        return view('categories.index', compact('data', 'articles', 'users'));
     }
 
     public function create()

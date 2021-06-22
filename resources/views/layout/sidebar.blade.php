@@ -10,41 +10,41 @@
         'childrens' => [
             [
             'title' => 'List User',
-            'url' => '/users/all'
+            'url' => '/admin/users/all'
             ],
             [
                 'title' => 'Create Users',
-                'url' => '/users/create'
+                'url' => '/admin/users/create'
             ]
         ]
     ];
     $article = [
         'title' => 'Articles',
         'url' => '#',
-        'icon' => 'bi bi-person-fill',
+        'icon' => 'bi bi-file-text-fill',
         'childrens' => [
             [
             'title' => 'List Articles',
-            'url' => '/articles/all'
+            'url' => '/admin/articles/all'
             ],
             [
                 'title' => 'Create Article',
-                'url' => '/articles/create'
+                'url' => '/admin/articles/create'
             ]
         ]
     ];
     $category= [
         'title' => 'Category',
         'url' => '#',
-        'icon' => 'bi bi-person-fill',
+        'icon' => 'bi bi-tags-fill',
         'childrens' => [
             [
             'title' => 'List Category',
-            'url' => '/categories/all'
+            'url' => '/admin/categories/all'
             ],
             [
                 'title' => 'Create Category',
-                'url' => '/categories/create'
+                'url' => '/admin/categories/create'
             ]
         ]
     ];

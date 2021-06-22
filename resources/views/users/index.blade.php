@@ -18,6 +18,7 @@
                                     <th>NAME</th>
                                     <th>EMAIL</th>
                                     <th>IMAGE</th>
+                                    <th>UPLOADED ARTICLE</th>
                                     <th>ACTION</th>
                                 </tr>
                             </thead>
@@ -27,6 +28,7 @@
                                     <td class="text-bold-500">{{ $item->name }}</td>
                                     <td>{{ $item->email }}</td>
                                     <td class="text-bold-500"><img style="height: 40px;" src="{{ asset('profile/' . $item->image) }}" alt=""></td>
+                                    <td>{{ $item->article->count() }}</td>
                                     <td>
                                         <div class="d-flex">
                                             <a href="{{ route('user.edit', $item->id) }}"><i class="bi bi-pencil-square" style="font-size: 25px;"></i></a>

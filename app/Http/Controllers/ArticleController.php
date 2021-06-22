@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\User;
@@ -31,23 +32,16 @@ class ArticleController extends Controller
         return view('articles.create', ['data' => $data, 'categories' => $categories, 'users' => $users]);
     }
 
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'content' => 'required',
-            'image_file' => 'required',
-            'user_id' => 'required',
-            'category_id' => 'required',
-            ]);
-            $image_file = $this->uploadImage($request->file('image_file'));
-            // $image_file = $request->file('image_file')->store('img', 'public');
-            $request->merge([
-                'image' => $image_file
-            ]);
-            Article::create($request->all());
-            return redirect()->route('article.index');
-            }
+        $image_file = $this->uploadImage($request->file('image_file'));
+        // $image_file = $request->file('image_file')->store('img', 'public');
+        $request->merge([
+            'image' => $image_file
+        ]);
+        Article::create($request->all());
+        return redirect()->route('article.index')->with('sukses-store','Data succesfully created');
+        }
 
     public function edit($id)
     {
@@ -63,7 +57,6 @@ class ArticleController extends Controller
         $request->validate([
             'title' => 'required',
             'content' => 'required',
-            'image_file' => 'required',
             'user_id' => 'required',
             'category_id' => 'required'
         ]);
@@ -73,7 +66,17 @@ class ArticleController extends Controller
         if (file_exists($img_path)) {
             unlink($img_path);
         }
-
+        // if ($request->file('image_file') == null) {
+        //     $request->merge([
+        //         'image' => $data->image
+        //     ]);
+        // } else {
+        //     $this->removeImage($data->image);
+        //     $image_file = $this->uploadImage($request->image_file);
+        //     $request->merge([
+        //         'image' => $image_file
+        //     ]);
+        // }
         $image_file = $this->uploadImage($request->file('image_file'));
         $request->merge([
             'image' => $image_file
@@ -85,13 +88,21 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         $data = Article::findorfail($id);
+        $this->removeImage($data->image);
         $data->delete();
         return back();
     }
+    
     public function uploadImage($image)
     {
         $new_name_image = time() . '.' .  $image->getClientOriginalExtension();
         $image->move(public_path('profile'), $new_name_image);
         return $new_name_image;
+    }
+    public function removeImage($image)
+    {
+        if (file_exists($image)) {
+            unlink('profile/' . $image);
+        }
     }
 }
