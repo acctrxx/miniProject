@@ -202,51 +202,20 @@
 <h5 class="mt-5 mb-4 text-dark text-center">FOOD AND DRINK</h5>
 
 <div class="d-flex mb-5 justify-content-between align-items-center">
+	@foreach ( $articles as $item)
 	<div class="flex-column" style="width: 250px;">
-		<img style="height: 200px;" src="https://preview.colorlib.com/theme/content/images/xslider_1.jpg.pagespeed.ic.3OtL1OUixq.webp" alt="">
-		<div class="meta-cat fw-bold mt-3"><a href="#" style="color: #dcba82;">Food and Drink</a></div>
-		<h2><a href="inner-page.html" class="text-black fs-5">Far far away behind the Word Mountains far from Away</a></h2>
-		<div class="meta">
-				<span>May 10, 2020</span>
-				<span>•</span>
-				<span>5 mins read</span>
+		<img style="height: 200px;" src="/profile/{{ $item->image }}" alt="">
+			<div class="meta-cat fw-bold mt-3"><a href="#" style="color: #dcba82;">{{ $item->category->name }}</a></div>
+			<h2><a href="inner-page.html" class="text-black fs-5">{{ $item->title }}</a></h2>
+			<div class="meta">
+					<span>{{ $item->create_at }}</span>
+					<span>•</span>
+					<span>Upload by : {{ $item->user->name }}</span>
+			</div>
+				<p><a href="inner-page.html" class="text-black fs-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</a></p>
 		</div>
-			<p><a href="inner-page.html" class="text-black fs-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</a></p>
+		@endforeach
 	</div>
-	<div class="flex-column" style="width: 250px;">
-		<img style="height: 200px;" src="https://preview.colorlib.com/theme/content/images/xslider_2.jpg.pagespeed.ic.MeMJUfLHS1.webp" alt="">
-		<div class="meta-cat fw-bold mt-3"><a href="#" style="color: #dcba82;">Food and Drink</a></div>
-			<h2><a href="inner-page.html" class="text-black fs-5">Far far away behind the Word Mountains far from Away</a></h2>
-			<div class="meta">
-				<span>May 10, 2020</span>
-				<span>•</span>
-				<span>5 mins read</span>
-			</div>
-		<p><a href="inner-page.html" class="text-black fs-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</a></p>
-	</div>
-	<div class="flex-column" style="width: 250px;">
-		<img style="height: 200px;" src="https://preview.colorlib.com/theme/content/images/xslider_2.jpg.pagespeed.ic.MeMJUfLHS1.webp" alt="">
-		<div class="meta-cat fw-bold mt-3"><a href="#" style="color: #dcba82;">Food and Drink</a></div>
-			<h2><a href="inner-page.html" class="text-black fs-5">Far far away behind the Word Mountains far from Away</a></h2>
-			<div class="meta">
-				<span>May 10, 2020</span>
-				<span>•</span>
-				<span>5 mins read</span>
-			</div>
-		<p><a href="inner-page.html" class="text-black fs-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</a></p>
-	</div>
-	<div class="flex-column" style="width: 250px;">
-		<img style="height: 200px;" src="https://preview.colorlib.com/theme/content/images/xslider_2.jpg.pagespeed.ic.MeMJUfLHS1.webp" alt="">
-		<div class="meta-cat fw-bold mt-3"><a href="#" style="color: #dcba82;">Food and Drink</a></div>
-			<h2><a href="inner-page.html" class="text-black fs-5">Far far away behind the Word Mountains far from Away</a></h2>
-			<div class="meta">
-				<span>May 10, 2020</span>
-				<span>•</span>
-				<span>5 mins read</span>
-			</div>
-		<p><a href="inner-page.html" class="text-black fs-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</a></p>
-	</div>
-</div>
 
 {{-- Footer --}}
 
