@@ -12,9 +12,13 @@ class GuestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function home()
+    public function home(Request $request)
     {
-        $articles = Article::all();
+        if($request->has('search')) {
+            $articles = Article::where('title', 'LIKE', '%' . $request->search . '%')->get();
+        } else {
+            $articles = Article::all();
+        }
         return view('pages.index', compact('articles'));
     }
 
