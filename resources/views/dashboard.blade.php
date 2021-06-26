@@ -211,7 +211,7 @@
                   <div class="card-body py-4 px-5">
                       <div class="d-flex align-items-center">
                           <div class="avatar avatar-xl">
-                              <img src="{{ Auth::user()->image }}" alt="Face 1">
+                              <img src="{{  }}" alt="Face 1">
                           </div>
                           <div class="ms-3 name">
                               <h5 class="font-bold">{{ Auth::user()->name }}</h5>
